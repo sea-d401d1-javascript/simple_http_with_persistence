@@ -7,18 +7,30 @@ var counter = 0;
 var router = new Router();
 
 router.get('/hat', function(req, res) {
-  console.log(req.url);
-  var filename = req.url.split('/')[2];
-  fs.readFile(dataDir + filename + '.json', (err, data) => {
+  console.log('Processing GET request for ' + req.url);
+
+  fs.readdir(dataDir, (err, files) => {
     if (err) throw err;
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(data.toString());
-    res.end();
+
+    var filename = req.url.split('/')[2];
+    if (files.indexOf(filename + '.json') === -1) {
+      res.writeHead(404, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify({msg: 'file does not exist'}));
+      res.end();
+
+    } else {
+      fs.readFile(dataDir + filename + '.json', (err, data) => {
+        if (err) throw err;
+        res.writeHead(200, {'Content-Type': 'application/json'});
+        res.write(data.toString());
+        res.end();
+      });
+    }
   });
 });
 
 router.post('/hat', function(req, res) {
-  console.log(req.url);
+  console.log('Processing POST request for ' + req.url);
   var body = '';
   var filename = req.url.split('/')[2] || ++counter;
   req.pipe(fs.createWriteStream(dataDir + filename + '.json'));

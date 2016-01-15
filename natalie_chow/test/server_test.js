@@ -88,5 +88,17 @@ describe('HTTP server', () => {
           done();
         });
     });
+
+    it('should return 404 if file does not exist', (done) => {
+      request('localhost:3000')
+        .get('/hat/doesnotexist')
+        .end((err, res) => {
+          expect(err).to.eql(null);
+          expect(res).to.have.status(404);
+          expect(res.body.msg).to.eql('file does not exist');
+          done();
+        });
+    });
+
   });
 });

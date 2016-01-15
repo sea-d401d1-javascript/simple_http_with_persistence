@@ -3,7 +3,7 @@ var filecount = 0;
 
 exports.get = function(req,res) {
   res.writeHead(200,{'Content-Type':'application/json'});
-  res.write('welcome');
+  res.write(JSON.stringify({msg: 'welcome'}));
   res.end();
 };
 

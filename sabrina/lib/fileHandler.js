@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-exports.writeFile = function(filename) {
+exports.writeFile = (filename) => {
   fs.writeFile(filename, '', 'utf8', (err) => {
     if (err) throw err;
     console.log('File name: ' + filename);

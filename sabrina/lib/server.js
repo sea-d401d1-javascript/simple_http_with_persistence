@@ -10,33 +10,34 @@ router.get('/hello', function(req, res) {
   res.end();
 });
 
-router.get('/anotherroute', function(req, res) {
+router.get('/anotherroute', (req, res) => {
   res.writeHead(200, {'Content-Type': 'application/json'});
   res.write(JSON.stringify({msg: 'hello from another route'}));
   res.end();
 });
 
-router.get('/index', function(req, res) {
+router.get('/index', (req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html'});
   var index = fs.createReadStream(__dirname + '/../public/index.html');
   return index.pipe(res);
 });
 
-router.get('/donors', function(req, res) {
+router.get('/donors', (req, res) => {
   var getDonors = fs.createReadStream(__dirname + '/../data/team.json');
   res.writeHead(200, {'Content-Type': 'application/json'});
   return getDonors.pipe(res);
 });
 
-router.post('/donors', function(req, res) {
-  var filename = (new Date().toISOString()) + '.txt';
+router.post('/donors', (req, res) => {
+  var filename = (new Date().toISOString()) + '.json';
   var newPath = '/../data/' + filename;
   fileHandler.writeFile(filename);
-  var changePath = fs.rename(filename, newPath, function() {
+  var changePath = fs.rename(filename, newPath, () => {
     var putDonors = fs.createWriteStream(__dirname + newPath);
     req.pipe(putDonors);
-    req.on('end', function () {
+    req.on('end', () => {
       res.writeHead(200, {'Content-Type': 'application/json'});
+      res.write(JSON.stringify({msg: 'File written to server!'}))
       res.end(fs.unlinkSync(filename));
     });
   });

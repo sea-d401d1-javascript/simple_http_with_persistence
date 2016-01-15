@@ -4,7 +4,7 @@ var mocha = require('gulp-mocha');
 
 var files = ['**/*.js', '!node_modules/**', '!data/**'];
 
-gulp.task('eslint', function() {
+gulp.task('eslint', () => {
   return gulp.src(files)
     .pipe(eslint({
       'rules': {
@@ -29,7 +29,7 @@ gulp.task('eslint', function() {
     .pipe(eslint.format());
 });
 
-gulp.task('test', function() {
+gulp.task('test', () => {
   return gulp.src(['test/*.js'], {
     read: false
   })

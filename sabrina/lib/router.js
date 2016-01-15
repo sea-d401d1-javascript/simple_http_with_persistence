@@ -5,7 +5,7 @@ var Router = module.exports = exports = function() {
     'PUT': {},
     'PATCH': {},
     'DELETE': {},
-    'FourOhFour': function(req, res) {
+    'PROBLEM': function(req, res) {
       res.writeHead(404, {'Content-Type': 'application/json'});
       res.write(JSON.stringify({msg: 'Page not found'}));
       return res.end();
@@ -35,7 +35,7 @@ Router.prototype.delete= function(url, callback) {
 
 Router.prototype.route = function(options) {
   return (req, res) => {
-    var routeFunction = this.routes[req.method][req.url] || this.routes.FourOhFour;
+    var routeFunction = this.routes[req.method][req.url] || this.routes.PROBLEM;
     routeFunction(req, res);
   };
 };

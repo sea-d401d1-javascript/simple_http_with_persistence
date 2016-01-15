@@ -19,7 +19,7 @@ var Router = module.exports = exports = function() {
   };
 });
 
-Router.prototype.route = function(options) {
+Router.prototype.route = function() {
   return (req, res) => {
     var endpoint = req.url.split('/')[1];
     var routeFunction = this.routeLibrary[req.method]['/' + endpoint] || this.routeLibrary.FourOhFour;

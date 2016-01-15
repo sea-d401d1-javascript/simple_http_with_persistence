@@ -46,4 +46,4 @@ router.post('/teapot', function(req, res) {
 
 
 var server = module.exports = exports = http.createServer(router.route());
-server.listen(3000, () => {console.log('server up on port 3000');})
+server.listen(3000, () => {console.log('server up on port 3000');});

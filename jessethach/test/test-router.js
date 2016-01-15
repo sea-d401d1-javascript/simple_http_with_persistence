@@ -8,10 +8,6 @@ const request = chai.request;
 const server = require(__dirname + '/../lib/server.js');//eslint-disable-line
 
 describe('HTTP server', () => {
-  after(() => {
-    server.close();
-  });
-
   it('should have run server', (done) => {
     request('localhost:3000')
       .get('/')
@@ -34,14 +30,15 @@ describe('HTTP server', () => {
       });
   });
 
-  it('should read data from first json file', (done) => {
+  it('should have a greet route', (done) => {
     request('localhost:3000')
-      .get('/data/1.json')
-      .end((err, res) => {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(200);
-        expect(res.body).to.eql({"noteBody":"hello world"});
-      });
+    .post('/data/')
+    .send({ name: 'tester'})
+    .end((err, res) => {
+      expect(err).to.eql(null);
+      expect(res).to.have.status(200);
+      done();
+    });
   });
 
   it('should 404 on a page that does not exist', (done) => {

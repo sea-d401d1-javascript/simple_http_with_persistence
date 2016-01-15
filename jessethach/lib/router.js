@@ -18,9 +18,9 @@ Router.prototype.post = function(url, callback) {
   this.routes['POST'][url] = callback;
 };
 
-Router.prototype.route = function(options) {
+Router.prototype.route = function() {
   return (req, res) => {
-  var routeFunction = this.routes[req.method][req.url] || this.routes.FourOhFour;
-  routeFunction(req, res);
+    var routeFunction = this.routes[req.method][req.url] || this.routes.FourOhFour;
+    routeFunction(req, res);
   };
 };

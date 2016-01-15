@@ -7,7 +7,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node ./node_modules/gulp-mocha/node_modules/mocha/bin/mocha test/**/*test.js -c"
+    "test": "node ./node_modules/gulp-mocha/node_modules/mocha/bin/mocha test/**/*test.js -c",
+    "start": "node ./index.js"
   },
   "keywords": [],
   "author": "",

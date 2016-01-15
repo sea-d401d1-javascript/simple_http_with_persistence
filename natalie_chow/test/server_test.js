@@ -5,7 +5,7 @@ const expect = chai.expect;
 const request = chai.request;
 const fs = require('fs');
 
-const server = require(__dirname + '/../lib/server');
+const server = require(__dirname + '/../lib/server_with_router');
 
 describe('HTTP server', () => {
   after(() => {

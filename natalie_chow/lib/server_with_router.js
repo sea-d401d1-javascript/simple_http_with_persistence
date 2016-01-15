@@ -6,7 +6,7 @@ const dataDir = __dirname + '/../data/';
 var counter = 0;
 var router = new Router();
 
-router.get('/hat', function(req, res) {
+router.get('/teapot', function(req, res) {
   console.log('Processing GET request for ' + req.url);
 
   fs.readdir(dataDir, (err, files) => {
@@ -29,7 +29,7 @@ router.get('/hat', function(req, res) {
   });
 });
 
-router.post('/hat', function(req, res) {
+router.post('/teapot', function(req, res) {
   console.log('Processing POST request for ' + req.url);
   var body = '';
   var filename = req.url.split('/')[2] || ++counter;

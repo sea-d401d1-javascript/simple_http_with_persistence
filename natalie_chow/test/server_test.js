@@ -27,7 +27,7 @@ describe('HTTP server', () => {
     hello: 'from the other side'
   };
 
-  describe('handling POST requests to /hat', () => {
+  describe('handling POST requests to /teapot', () => {
     after(() => {
       fs.unlink(__dirname + '/../data/1.json');
       fs.unlink(__dirname + '/../data/cat.json');
@@ -35,7 +35,7 @@ describe('HTTP server', () => {
 
     it('should assign a filename by default', (done) => {
       request('localhost:3000')
-        .post('/hat')
+        .post('/teapot')
         .send(testData)
         .end((err, res) => {
           expect(err).to.eql(null);
@@ -51,7 +51,7 @@ describe('HTTP server', () => {
 
     it('should take a parameter for filename', (done) => {
       request('localhost:3000')
-        .post('/hat/cat')
+        .post('/teapot/cat')
         .send(testData)
         .end((err, res) => {
           expect(err).to.eql(null);
@@ -66,7 +66,7 @@ describe('HTTP server', () => {
     });
   });
 
-  describe('handling GET requests to /hat', () => {
+  describe('handling GET requests to /teapot', () => {
     before((done) => {
       fs.writeFile(__dirname + '/../data/test.json', JSON.stringify(testData), (err) => {
         if (err) throw err;
@@ -80,7 +80,7 @@ describe('HTTP server', () => {
 
     it('should read the specified json file', (done) => {
       request('localhost:3000')
-        .get('/hat/test')
+        .get('/teapot/test')
         .end((err, res) => {
           expect(err).to.eql(null);
           expect(res).to.have.status(200);
@@ -91,7 +91,7 @@ describe('HTTP server', () => {
 
     it('should return 404 if file does not exist', (done) => {
       request('localhost:3000')
-        .get('/hat/doesnotexist')
+        .get('/teapot/doesnotexist')
         .end((err, res) => {
           expect(err).to.eql(null);
           expect(res).to.have.status(404);

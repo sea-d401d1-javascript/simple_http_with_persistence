@@ -4,7 +4,7 @@ const dataDir = __dirname + '/../data/';
 var counter = 0;
 
 var server = module.exports = exports = http.createServer((req, res) => {
-  if (req.url.startsWith('/hat')) {
+  if (req.url.startsWith('/teapot')) {
     var filename = req.url.split('/')[2];
     if (req.method === 'GET') {
       fs.readFile(dataDir + filename + '.json', (err, data) => {

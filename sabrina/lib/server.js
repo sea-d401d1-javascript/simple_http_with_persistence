@@ -1,6 +1,7 @@
 const Router = require(__dirname + '/../index');
 const http = require('http');
 const fs = require('fs');
+const fileHandler = require(__dirname + '/fileHandler.js');
 
 var router = new Router();
 router.get('/hello', function(req, res) {
@@ -28,12 +29,15 @@ router.get('/donors', function(req, res) {
 });
 
 router.post('/donors', function(req, res) {
-  var putDonors = fs.createWriteStream(__dirname + '/../data/test.json');
-  res.writeHead(200, {'Content-Type': 'application/json'});
-  return req.pipe(putDonors);
-  // req.on('end', function() {
-  //   res.write(JSON.stringify({msg: 'hello from donor put'}));
-  // });
+  var filename = (new Date().toISOString()) + '.txt';
+  var newPath = '/../data/' + filename;
+  fileHandler.writeFile(filename);
+  var changePath = fs.rename(filename, newPath, function() {
+    var putDonors = fs.createWriteStream(__dirname + newPath);
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    req.pipe(putDonors);
+    return fs.unlinkSync(filename);
+  });
 });
 
 var server = http.createServer(router.route());

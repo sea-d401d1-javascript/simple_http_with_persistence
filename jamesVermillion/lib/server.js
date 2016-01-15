@@ -14,7 +14,9 @@ router.get( function(req, res) {
 });
 
 router.post( function(req, res) {
-  //if (!req.url.endsWith('.json')) return router.routes.FourOhFour(req, res);
+  if (!req.url.endsWith('.json')){
+    return router.routes.FourOhFour(req, res);
+  }
   var requestJSON = '';
   req.on('data', (data) => {
     requestJSON += data;

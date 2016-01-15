@@ -49,4 +49,15 @@ describe('http server: POST', function () {
     newCount = newList.length;
     expect(newCount).to.eql(oldCount + 1); 
   });
+  it('Shouldn\t let a file get stored. JSON only my friend', function (done) {
+    request('localhost:3000')
+      .post('/fuddy.jso')
+      .send({name: 'jim'})
+      .end((err, res) => { //eslint-disable-line
+        expect(err).to.eql(null);
+        expect(res).to.have.status(404);
+        expect(res.text).to.eql('\"file not found\"');
+        done();
+      }); 
+  });
 });

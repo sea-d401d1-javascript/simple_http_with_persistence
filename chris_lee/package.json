@@ -4,7 +4,7 @@
   "description": "simple http server that stores post data in a JSON file",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/clee46/simple_http_with_persistence/issues"
   },
-  "homepage": "https://github.com/clee46/simple_http_with_persistence#readme"
+  "homepage": "https://github.com/clee46/simple_http_with_persistence#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
 }

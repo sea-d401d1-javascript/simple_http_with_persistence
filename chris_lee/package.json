@@ -1,0 +1,26 @@
+{
+  "name": "persistent-http-server",
+  "version": "1.0.0",
+  "description": "simple http server that stores post data in a JSON file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clee46/simple_http_with_persistence.git"
+  },
+  "keywords": [
+    "http",
+    "server",
+    "json",
+    "post",
+    "persistence"
+  ],
+  "author": "Chris Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clee46/simple_http_with_persistence/issues"
+  },
+  "homepage": "https://github.com/clee46/simple_http_with_persistence#readme"
+}

@@ -18,3 +18,6 @@ For this assignment, write an http server that will act as a simple data store. 
   * JSON storage: 3pts 
   * Tests: 2pts
   * Project Organization and Development Files: 2pts
+
+Finished fixing tests with reference to https://github.com/codefellows-sea-d45-javascript/http_with_persistence/tree/master/jack_sneed
+Thanks Jack!

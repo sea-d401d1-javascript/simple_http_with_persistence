@@ -19,7 +19,7 @@ describe('HTTP server', () => {
       });
   });
 
-  it('should have run server', (done) => {
+  it('should have greet user', (done) => {
     request('localhost:3000')
       .get('/greet')
       .end((err, res) => {
@@ -30,7 +30,7 @@ describe('HTTP server', () => {
       });
   });
 
-  it('should have a greet route', (done) => {
+  it('should create a new test file', (done) => {
     request('localhost:3000')
     .post('/data/')
     .send({ name: 'tester'})

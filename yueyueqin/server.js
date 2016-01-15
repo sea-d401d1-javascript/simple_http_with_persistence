@@ -10,9 +10,7 @@ router.post ('/note',requestHandlers.post);
 
 
 
-
-
-var server = http.createServer(router.route());
+var server = exports = module.exports = http.createServer(router.route());
 
 server.listen(3000, () => {
   console.log('server up');

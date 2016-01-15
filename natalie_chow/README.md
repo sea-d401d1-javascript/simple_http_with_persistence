@@ -1,6 +1,7 @@
 ## Simple HTTP server with data store
-
 The HTTP server starts on port 3000 and listens for any `POST`/`GET` requests at `/teapot`.
+
+> The server was first developed with if/else to handle routing; it is later refactored to use a Router constructor to redirect different endpoints. The original script called `server.js` is kept in the `/lib` directory for reference. However, `server_with_router.js` in the same folder is what the main application and test currently use.
 
 #### `POST`
 Data of any `POST` requests will be saved to a JSON file in the `/data` directory.

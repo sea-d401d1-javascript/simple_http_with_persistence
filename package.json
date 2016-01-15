@@ -1,0 +1,30 @@
+{
+  "name": "Erika_basic_http_server",
+  "version": "1.0.0",
+  "description": "Erika's basic HTTP server",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikawho/Erika_basic_http_server"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-bump": "^1.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-header": "^1.7.1",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "mocha": "^2.3.4"
+  },
+  "keywords": [],
+  "author": "erikawho",
+  "license": "ISC"
+}

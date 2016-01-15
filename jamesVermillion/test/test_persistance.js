@@ -1,4 +1,5 @@
-const server = require(__dirname + '/../lib/server.js'); //eslint-disable-line
+// const server = require(__dirname + '/../lib/server.js'); //eslint-disable-line
+const server = require(__dirname + '/../index.js'); //eslint-disable-line
 const chai = require('chai');
 chai.use(require('chai-http'));
 const request = chai.request;

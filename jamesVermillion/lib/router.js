@@ -20,7 +20,6 @@ Router.prototype.post= function(callback) {
 
 Router.prototype.route = function() {
   return (req, res) => {
-
     var routeFunction = this.routes[req.method] || this.routes.FourOhFour;
     routeFunction(req, res);
   };

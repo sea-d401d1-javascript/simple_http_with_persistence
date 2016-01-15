@@ -23,4 +23,6 @@ module.exports = function(){
     res.write('your file has been stored as: ' + __dirname + '/../json' + req.url); 
     res.end();
   });
-}
+  
+  return router.route();
+};

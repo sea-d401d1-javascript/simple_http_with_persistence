@@ -18,11 +18,15 @@ var server = http.createServer((req, res) => {
     res.writeHead(200, {'Content-Type':'application/json'});
     req.on('data', (data) => {
       console.log('Data: ' + data);
-      fs.writeFile('test.json', data, (err) => {
+      var timestamp = new Date().toISOString();
+      var path = 'data/' + timestamp + '.json';
+      fs.writeFile(path, data, (err) => {
         if (err) return 'Error';
-        console.log('file saved');
+        console.log('file ' + timestamp + ' saved');
       });
     });
+    res.end();
+  }
 }).listen(PORT);
 
 console.log('Server is running on port ' + PORT);

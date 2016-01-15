@@ -1,6 +1,7 @@
 const chai     = require('chai');
 const server   = require(__dirname + '/../index');
 const chaiHTTP = require('chai-http');
+const fs       = require('fs');
 
 chai.use(chaiHTTP);
 const expect   = chai.expect;
@@ -13,6 +14,7 @@ describe('test GET & POST on http server', () => {
     .end((err, res) => {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
+      done();
     });
   });
   it('should have POST request writing data into file as JSON', (done) => {
@@ -20,11 +22,12 @@ describe('test GET & POST on http server', () => {
     .post('/')
     .send({hello: 'world', goodbye: 'everyone'})
     .end((err, res) => {
-      .expect(err).to.eql(null);
-      .expect(res).to.have.status(200);
-      .expect(fs.readdir('./data', (err, files) => {
-        return files.length;
-      })).to.eql(1);
+      expect(err).to.eql(null);
+      expect(res).to.have.status(200);
+      fs.readdir('../data/', (err, files) => {
+        expect(files.length).to.eql(10);
+        done();
+      });
     });
   });
 });

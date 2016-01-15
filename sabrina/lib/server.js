@@ -34,9 +34,11 @@ router.post('/donors', function(req, res) {
   fileHandler.writeFile(filename);
   var changePath = fs.rename(filename, newPath, function() {
     var putDonors = fs.createWriteStream(__dirname + newPath);
-    res.writeHead(200, {'Content-Type': 'application/json'});
     req.pipe(putDonors);
-    return fs.unlinkSync(filename);
+    req.on('end', function () {
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(fs.unlinkSync(filename));
+    });
   });
 });
 

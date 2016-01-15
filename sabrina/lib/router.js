@@ -17,19 +17,19 @@ Router.prototype.get = function(url, callback) {
   this.routes['GET'][url] = callback;
 };
 
-Router.prototype.put= function(url, callback) {
+Router.prototype.put = function(url, callback) {
   this.routes['PUT'][url] = callback;
 };
 
-Router.prototype.post= function(url, callback) {
+Router.prototype.post = function(url, callback) {
   this.routes['POST'][url] = callback;
 };
 
-Router.prototype.patch= function(url, callback) {
+Router.prototype.patch = function(url, callback) {
   this.routes['PATCH'][url] = callback;
 };
 
-Router.prototype.delete= function(url, callback) {
+Router.prototype.delete = function(url, callback) {
   this.routes['DELETE'][url] = callback;
 };
 

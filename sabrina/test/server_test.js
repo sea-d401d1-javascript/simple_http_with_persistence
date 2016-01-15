@@ -71,25 +71,25 @@ describe('the http server', () => {
       });
   });
 
-  // describe('the /donors route', () => {
-  //   before((done) => {
-  //     fs.readFile(__dirname + '/../data/team.json', (err, data) => {
-  //       this.index = data.toString();
-  //       done();
-  //     });
-  //   });
-  //
-  //   it('should return the team.json file to GET requests', (done) => {
-  //     chai.request('localhost:3000')
-  //       .get('/donors')
-  //       .end((err, res) => {
-  //         expect(err).to.eql(null);
-  //         expect(res).to.have.status(200);
-  //         expect(res.body).to.eql(this.index);
-  //         done();
-  //       });
-  //   });
-  // });
+  describe('the /donors route', () => {
+    before((done) => {
+      fs.readFile(__dirname + '/../data/team.json', (err, data) => {
+        this.index = JSON.parse(data.toString());
+        done();
+      });
+    });
+
+    it('should return the team.json file to GET requests', (done) => {
+      chai.request('localhost:3000')
+        .get('/donors')
+        .end((err, res) => {
+          expect(err).to.eql(null);
+          expect(res).to.have.status(200);
+          expect(res.body).to.eql(this.index);
+          done();
+        });
+    });
+  });
 
   describe('the /donors POST request', () => {
     var filenameTest = Math.random().toString() + '.json';

@@ -1,57 +1,42 @@
 const chai = require('chai');
-const server = require(__dirname + '+/../server');
+const server = require(__dirname +'/../test/testing_server');
 const chaiHTTP = require('chai-http');
-chai.use(chaiHTTP);
+const fs = require('fs');
+chai.use(chaiHttp);
 const expect = chai.expect;
 const request = chai.request;
 
+var path = __dirname + '/../data';
+var fileCount;
 
+describe('simple http server with persistence', () => {
+  before((done) => {
+    fs.readdir(path, function (err, files) {
+      if (err) throw err;
+      fileCount = files.length;
+        done();
+      });
+  });
 
-describe('http server persistant', () => {
-  // it('should return the current time', (done) => {
-  //   request('localhost:3000')
-  //     .get('/time')
-  //     .end((err, res) => {
-  //       expect(err).to.eql(null);
-  //       expect(res).to.have.status(200);
-  //       expect(res.body.msg).to.eql('time is: ' + new Date().toTimeString());
-  //       done();
-  //     });
-  // });
-
-  it('should GET the data', (done) => {
+  it ('should have a note route', (done) => {
     request('localhost:3000')
-      .get('/data')
+      .post('/note')
+      .send({ msg: 'Here is a note!'})
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('Here comes the data!');
+        expect(res.body).to.eql({ msg: 'The note!'});
         done();
       });
   });
 
-  it('should POST the data', (done) => {
-    request('localhost:3000')
-      .post('/data')
-      .send({ msg: 'data party'})
-      .end((err, res) => {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('There goes the data!');
+    it('should create a new file when it receives note post data', (done) => {
+      var filesAfter;
+      fs.readdir(path, function (err, files) {
+        if (err) throw err;
+        filesAfter = files.length;
+        expect(filesAfter).to.eql(fileCount + 1);
         done();
+        });
       });
-  });
-
-
-  it('should return 404 not found', (done) => {
-    request('localhost:3000')
-      .get('/nonexistant')
-      .end((err, res) => {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(404);
-        expect(res.body.msg).to.eql('page not found');
-        done();
-      });
-  });
-
-});
+    });

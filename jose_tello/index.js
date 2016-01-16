@@ -1,7 +1,5 @@
 const http       = require('http');
 const fs         = require('fs');
-const util       = require('util');
-const formidable = require('formidable');
 
 var PORT = 3000;
 
@@ -20,12 +18,13 @@ var server = http.createServer((req, res) => {
       console.log('Data: ' + data);
       var timestamp = new Date().toISOString();
       var path = 'data/' + timestamp + '.json';
+      res.write(data);
       fs.writeFile(path, data, (err) => {
         if (err) return 'Error';
         console.log('file ' + timestamp + ' saved');
+        res.end();
       });
     });
-    res.end();
   }
 }).listen(PORT);
 

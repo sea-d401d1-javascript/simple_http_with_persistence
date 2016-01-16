@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var mocha = require('gulp-mocha');
+var eslint = require('gulp-eslint');
 gulp.task('default', ['eslint_check', 'mocha_tests', 'watch']);
 gulp.task('function', function() {
   /* Place code for your "function" task here, what is run when:
@@ -8,7 +9,7 @@ gulp.task('function', function() {
 });
 
 gulp.task('eslint_check', function() {
-  return gulp.src(['**/*.js','!node_modules/**','!dist/*.js']).pipe.eslint();
+  return gulp.src(['**/*.js','!node_modules/**']).pipe.eslint();
   {
       'settings': {
         'ecmascript': 5

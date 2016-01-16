@@ -8,20 +8,20 @@ var server = module.exports = exports = http.createServer((req, res) => {
     return res.end();
   }
 
-  else if (req.method === 'GET' && (req.url.slice(0,6) === '/greet' && req.url.length > 6)) {
+  else if (req.method === 'GET' && (req.url.slice(0,6) === '/data' && req.url.length > 6)) {
     res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify({msg: 'howdy' + req.url.slice(7) + '!'}));
+    res.write(JSON.stringify({msg: 'got that data' + req.url.slice(7) + '!'}));
     return res.end();
   }
 
-  else if (req.method === 'POST' && req.url === '/greet') {
+  else if (req.method === 'POST' && req.url === '/data') {
     var result = ''
     req.on('data', function(chunk) {
       result += JSON.parse(chunk.toString()).msg;
     });
     req.on('end', function() {
       res.writeHead(200, {'Content-Type': 'application/json'});
-      res.write(JSON.stringify({msg: 'howdy' + result}));
+      res.write(JSON.stringify({msg: 'data heading to json' + result}));
       return res.end();
     });
   }

@@ -6,14 +6,14 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 const request = chai.request;
 
-describe('simple http server', () => {
+describe('simple http server with persistence', () => {
   it('should have a hello route', () => {
     request('localhost:3000')
-      .get('/hello')
+      .get('/data')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('hello world');
+        expect(res.body.msg).to.eql('there is data');
         done();
       });
   });

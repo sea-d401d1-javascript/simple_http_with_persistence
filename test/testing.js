@@ -7,37 +7,37 @@ const request = chai.request;
 
 
 
-describe('http server', () => {
-  it('should return the current time', (done) => {
+describe('http server persistant', () => {
+  // it('should return the current time', (done) => {
+  //   request('localhost:3000')
+  //     .get('/time')
+  //     .end((err, res) => {
+  //       expect(err).to.eql(null);
+  //       expect(res).to.have.status(200);
+  //       expect(res.body.msg).to.eql('time is: ' + new Date().toTimeString());
+  //       done();
+  //     });
+  // });
+
+  it('should GET the data', (done) => {
     request('localhost:3000')
-      .get('/time')
+      .get('/data')
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('time is: ' + new Date().toTimeString());
+        expect(res.body.msg).to.eql('Here comes the data!');
         done();
       });
   });
 
-  it('should greet me using GET', (done) => {
+  it('should POST the data', (done) => {
     request('localhost:3000')
-      .get('/greet/erika')
+      .post('/data')
+      .send({ msg: 'data party'})
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('howdyerika!');
-        done();
-      });
-  });
-
-  it('should greet me using POST data', (done) => {
-    request('localhost:3000')
-      .post('/greet')
-      .send({ msg: 'erika'})
-      .end((err, res) => {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('howdyerika');
+        expect(res.body.msg).to.eql('There goes the data!');
         done();
       });
   });

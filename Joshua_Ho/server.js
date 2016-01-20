@@ -14,33 +14,42 @@ var server = module.exports = exports = http.createServer( (req , res) => {
 		website.pipe(res);
 	}
 
+
 	if (req.method === 'POST') {
+
 		//How to handle data - Only accepts JSON
+		var newFileFlag = false;
+		var numFiles;
+		var newFile;
 		req.on('data' , (chunk) => {
 			//Take the JSON object and assign it to something
-			var newData = JSON.parse(chunk);
-			var newDate = new Date();
-			var numFiles;
 
+			var newData = JSON.parse(chunk);
+
+			//Create stream 
 			fs.readdir( __dirname + '/log' , ( err , files ) => {
 				numFiles = files.length;
 
-				var newFile = fs.createWriteStream( __dirname + '/log/client_log_' + numFiles++ + ".txt" ); 
-
+				//Don't forget to close write streams once they are no longer needed
+				newFile = fs.createWriteStream( __dirname + '/log/client_log_' + (numFiles + 1) + '.txt' );
 				newFile.write(JSON.stringify(newData));			
-				console.log( 'client_log_' + numFiles++ + ".txt created.");
+				console.log( 'client_log_' + (numFiles + 1) + ".txt created.");
 
 			});
 			//use fs module to write a new file with the JSON object to dir /log
 		});
 
 		req.on('end' , () => {
+			//Flag to prevent newFile being referenced without a definition
+			// if (newFileFlag){
+			// 	newFile.close();
+			// }
 
-			//Very considerate response to the client posting to the server 
 			res.writeHead(200 , {'Content-Type' : 'application/json'});
+			//Very considerate response to the client posting to the server 
 			res.write( JSON.stringify({msg: "Hey guy, Object Received :)"}) );
-
 			res.end();
+
 		})
 	}
 

@@ -5,10 +5,10 @@ var start = exports.start = function(route, handle){
   function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
     var greetRegex = /\/greet/ ;
+
     if(greetRegex.test(pathname)){
       pathname = '/greet'
     }
-    console.log("Request for " + pathname + " received.");
 
     route(handle, pathname, request, response);
   }
@@ -22,5 +22,4 @@ var start = exports.start = function(route, handle){
   };
 
   var stop = exports.stop = stopper.bind(start);
-
 };

@@ -13,11 +13,31 @@ gulp.task('watch-mocha', function() {
   gulp.watch(['lib/**', 'test/**'], ['mocha']);
 });
 
-var files = ['**', '**/*'];
+var files = ['**/*.js','!node_modules/**'];
 
 gulp.task('lint', function(){
   return gulp.src(files)
-  .pipe(eslint())
+  .pipe(eslint({
+        extends: 'eslint:recommended',
+        ecmaFeatures: {
+            'modules': true
+        },
+        rules: {
+            'no-console': 0,
+            'no-irregular-whitespace': 2,
+            'no-unused-vars': 1
+        },
+        globals: {
+            'jQuery':false,
+            '$':false
+        },
+        envs: [
+            'node',
+            'mocha',
+            'es6',
+            'modules'
+        ]
+    }))
   .pipe(eslint.format());
 });
 

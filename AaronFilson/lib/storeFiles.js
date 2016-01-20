@@ -8,7 +8,6 @@ exports.readOne = function(nameStr, callMeBack){
 };
 
 exports.writeOne = function(dataBuf, callFriendBack){
-  var timeStamp = new Date().getTime().toString();
   var writeRet = fs.appendFile(__dirname + '/../dStore/basicFile.json', dataBuf, callFriendBack);
   return writeRet;
 };

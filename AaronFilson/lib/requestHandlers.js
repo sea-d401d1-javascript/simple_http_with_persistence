@@ -1,9 +1,6 @@
-var url = require('url');
-const fs = require('fs');
 var storeFiles = require(__dirname + '/storeFiles');
 
 function start(request, response){
-  console.log('in start handler');
   var contentVar = 'Hi. This is the index page. Try going to the /store page.';
   response.writeHead(200, {"Content-Type": "text/plain"});
   response.write(contentVar);
@@ -12,8 +9,6 @@ function start(request, response){
 }
 
 function store(request, response){
-  console.log('in store handler');
-
   function storeCallB(err, data){
     if(err){
       response.writeHead(200, {"Content-Type": "text/plain"});
@@ -30,7 +25,6 @@ function store(request, response){
 
   if(request.method == 'PUT'){
     var dataObj;
-    console.log('handling PUT method in store');
     request.on('data', function(chunk){
       dataObj += chunk;
 
@@ -41,22 +35,27 @@ function store(request, response){
   }
 
   if(request.method == 'POST'){
-    var dataObj;
-    console.log('handling PUT method in store');
+    var dataObj2;
     request.on('data', function(chunk){
-      dataObj += chunk;
+      dataObj2 += chunk;
 
     });
     request.on('end', function(){
-      storeFiles.writeOne(dataObj, storeCallB);
+      storeFiles.writeOne(dataObj2, storeCallB);
     });
   }
 
   if(request.method == 'GET'){
     var fileP = __dirname + '/../dStore/basicFile.json';
     storeFiles.readOne(fileP, (err, data) => {
+      if(err){
+        response.writeHead(200, {"Content-Type": "application/json"});
+        response.write(err);
+        response.end();
+      }
+
       response.writeHead(200, {"Content-Type": "application/json"});
-      response.write((err) ? err : data);
+      response.write(data);
       response.end();
     });
 

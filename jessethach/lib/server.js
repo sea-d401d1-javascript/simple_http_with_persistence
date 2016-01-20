@@ -19,8 +19,8 @@ router.get('/greet', function(req, res) {
 });
 
 router.get('/data/', function(req, res) {
-  var resReadStream = fs.createReadStream(__dirname + '/../data/1.json');
-  res.writeHead(200,{'Content-Type': 'application/json'});
+  var resReadStream = fs.createReadFile(__dirname + '/../data/1.json');
+  res.writeHead(200, {'Content-Type': 'application/json'});
   resReadStream.pipe(res);
   return res.end();
 });
@@ -41,4 +41,4 @@ router.post('/data/', function(req, res) {
 });
 
 var server = http.createServer(router.route());
-server.listen(3000, () => console.log('server up'));//eslint-disable-line
+module.exports = exports = server.listen(3000, () => console.log('server up'));//eslint-disable-line

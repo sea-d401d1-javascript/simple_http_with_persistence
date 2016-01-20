@@ -5,9 +5,18 @@ chai.use(chaiHttp);
 const fs = require('fs');//eslint-disable-line
 const request = chai.request;
 
-const server = require(__dirname + '/../lib/server.js');//eslint-disable-line
-
 describe('HTTP server', () => {
+
+  before(function(done) {
+    this.server = require(__dirname + '/../lib/server');
+    done();
+  });
+
+  after(function(done) {
+    this.server.close(done);
+  });
+
+
   it('should have run server', (done) => {
     request('localhost:3000')
       .get('/')
@@ -37,6 +46,7 @@ describe('HTTP server', () => {
     .end((err, res) => {
       expect(err).to.eql(null);
       expect(res).to.have.status(200);
+      expect(res.text).to.have.eql('Hello, user ');
       done();
     });
   });

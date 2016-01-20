@@ -1,0 +1,21 @@
+{
+  "name": "yueyueqin",
+  "version": "1.0.0",
+  "description": "Write a http server that will act as a simple data store",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/**/*test.js"
+  },
+  "author": "yueyueqin",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "jsonfile": "^2.2.3",
+    "mocha": "^2.3.4",
+    "superagent-cli": "^2.1.0"
+  }
+}

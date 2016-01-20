@@ -3,7 +3,6 @@ const http = require('http');
 const fs = require('fs');
 
 var router = new Router();
-var route = __dirname + '/../data';
 var count = 0;
 
 router.get('/data', function(req, res) {
@@ -13,10 +12,10 @@ router.get('/data', function(req, res) {
 });
 
 router.post('/data', function(req, res) {
-  var count = 'data/request_' + ++fileCount + '.json';
+  var count = 'data/' + count++ + '.json';
   var body = '';
-  req.on('data', function(chunk) {
-    body += chunk.toString();
+  req.on('data', function(data) {
+    body += data.toString();
   });
   req.on('end', function() {
     res.writeHead(200, {'Content-Type': 'application/json'});

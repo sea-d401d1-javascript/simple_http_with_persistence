@@ -1,6 +1,6 @@
-const Router = require(__dirname + '/data/router');
+const Router = require(__dirname + '/lib/router');
 const http = require ('http');
-const requestHandlers = require(__dirname + 'data/requestHandlers');
+const requestHandlers = require(__dirname + 'lib/requestHandlers');
 
 var router = new Router();
 

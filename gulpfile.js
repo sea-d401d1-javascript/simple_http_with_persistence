@@ -9,12 +9,21 @@ gulp.task('function', function() {
 });
 
 gulp.task('eslint_check', function() {
-  return gulp.src(['**/*.js','!node_modules/**']).pipe.eslint();
-  {
+  return gulp.src(['**/*.js','!node_modules/**','!dist/*.js']).pipe(eslint(
+    {
       'settings': {
-        'ecmascript': 5
+        'ecmascript': 6
       },
       'ecmaFeatures': {
+        'blockBindings': true,
+        'arrowFunctions': true
+      },
+      'parserOptions': {
+        'ecmaVersion': 6,
+        'sourceType': 'module',
+        'ecmaFeatures': {
+          'jsx': true
+        },
       },
       'env': {
         'browser': true,
@@ -41,7 +50,7 @@ gulp.task('eslint_check', function() {
 });
 
 gulp.task('mocha_tests', function () {
-  return gulp.src('**/*.js', {read: false}).pipe(mocha({reporter: 'nyan'}));
+  return gulp.src('./test/**/*.js').pipe(mocha({reporter: 'nyan'}));
 });
 
 gulp.task('watch', function() {

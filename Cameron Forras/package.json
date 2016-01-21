@@ -1,0 +1,21 @@
+{
+  "name": "simple_http_pers",
+  "version": "1.0.0",
+  "description": "An HTTP Server with simple persistence",
+  "main": "server2.js",
+  "scripts": {
+    "test": "gulp",
+    "start": "node server.js"
+  },
+  "author": "Cameron Forras",
+  "license": "MIT",
+  "devDependencies": {
+    "body-parser": "^1.14.2",
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "express": "^4.13.3",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
+}

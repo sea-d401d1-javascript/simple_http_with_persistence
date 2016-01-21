@@ -8,14 +8,14 @@ handle['/index'] = requestHandlers.start;
 handle['/store'] = requestHandlers.store;
 
 
-var nowStart = exports.serverstart = function(){
-  server.start(router.route, handle);
+var nowstart = exports.nowstart = function(){
+  server.startserver(router.route, handle);
 };
 
-var serverstop = exports.serverstop = function(){
-  server.stop();
+var nowstop = exports.nowstop = function(){
+  server.stopserver();
 };
 
 if(process.argv[2] == 'now' || process.argv[3] == 'now'){
-  server.start(router.route, handle);
+  server.startserver(router.route, handle);
 }

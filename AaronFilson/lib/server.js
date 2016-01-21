@@ -1,7 +1,7 @@
 var http = require('http');
 var url = require('url');
 
-var start = exports.start = function(route, handle){
+var startserver = exports.startserver = function(route, handle){
   function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
     var greetRegex = /\/greet/ ;
@@ -21,5 +21,5 @@ var start = exports.start = function(route, handle){
     console.log('Server stopped.')
   };
 
-  var stop = exports.stop = stopper.bind(start);
+  var stopserver = exports.stopserver = stopper.bind(startserver);
 };

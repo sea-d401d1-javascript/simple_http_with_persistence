@@ -1,0 +1,21 @@
+{
+  "name": "week2team",
+  "version": "0.1.0",
+  "description": "Simple 404 framework for CodeFellows JS401",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha test/test.js -w"
+  },
+  "author": "Kris Hughes, Jason Montoya, Rob Merrill, Cameron Forras",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0"
+  }
+}

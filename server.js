@@ -1,35 +1,14 @@
+const Router = require(__dirname + '/data/router');
 const http = require ('http');
-const fs = require('fs');
+const requestHandlers = require(__dirname + 'data/requestHandlers');
 
-var server = module.exports = exports = http.createServer((req, res) => {
-  if (req.method === 'GET' && req.url === '/time') {
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify({msg: 'time is: ' + new Date().toTimeString()}));
-    return res.end();
-  }
+var router = new Router();
 
-  else if (req.method === 'GET' && (req.url.slice(0,6) === '/data' && req.url.length > 6)) {
-    res.writeHead(200, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify({msg: 'got that data' + req.url.slice(7) + '!'}));
-    return res.end();
-  }
+router.get('/howdy', requestHandlers.get);
 
-  else if (req.method === 'POST' && req.url === '/data') {
-    var result = ''
-    req.on('data', function(chunk) {
-      result += JSON.parse(chunk.toString()).msg;
-    });
-    req.on('end', function() {
-      res.writeHead(200, {'Content-Type': 'application/json'});
-      res.write(JSON.stringify({msg: 'data heading to json' + result}));
-      return res.end();
-    });
-  }
-  else {
-    res.writeHead(404, {'Content-Type': 'application/json'});
-    res.write(JSON.stringify({msg: 'page not found'}));
-    return res.end();
-  }
-});
+router.post ('/note', requestHandlers.post);
+
+var server = module.exports = exports = http.createServer(router.route());
+
 
 server.listen(3000, () => console.log('Server up'));

@@ -1,41 +1,49 @@
 const chai = require('chai');
-const server = require(__dirname +'/../test/testing_server');
-const chaiHTTP = require('chai-http');
-const fs = require('fs');
-chai.use(chaiHttp);
+const chaihttp = require('chai-http');
+const server = require(__dirname +'/../server');
+chai.use(chaihttp);
 const expect = chai.expect;
 const request = chai.request;
 
-var path = __dirname + '/../data';
-var fileCount;
+// var path = __dirname + '/../data';
+// var fileCount;
 
 describe('simple http server with persistence', () => {
-  before((done) => {
-    fs.readdir(path, function (err, files) {
-      if (err) throw err;
-      fileCount = files.length;
+  after(() => {
+    server.close();
+  });
+
+  it ('should have a howdy route', (done) => {
+    request('localhost:3000')
+      .get('/howdy')
+      .end(function(err, res) => {
+        expect(err).to.eql(null);
+        expect(res).to.have.status(200);
+        expect(res.body.msg).to.eql('howdy');
         done();
       });
   });
+
 
   it ('should have a note route', (done) => {
     request('localhost:3000')
       .post('/note')
-      .send({ msg: 'Here is a note!'})
+      .send({ msg: 'Noted!'})
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(res.body).to.eql({ msg: 'The note!'});
+        expect(JSON.parse(res.body.msg).to.eql('Noted!');
         done();
       });
   });
 
-    it('should create a new file when it receives note post data', (done) => {
-      var filesAfter;
-      fs.readdir(path, function (err, files) {
-        if (err) throw err;
-        filesAfter = files.length;
-        expect(filesAfter).to.eql(fileCount + 1);
+    it('should show 404 if page not found', (done) => {
+      request('localhost:3000')
+      .get('/pagenotfound')
+      .end(function(err, res){
+        expect(err).to.eql(null);
+        expect(res).to.have.status(404);
+        expect(res.body.msg).to.eql('page not found');
         done();
         });
       });

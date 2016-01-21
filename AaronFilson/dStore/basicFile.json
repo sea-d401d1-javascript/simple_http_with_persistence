@@ -1,0 +1,5 @@
+{
+  "msg": "This is the default file served by the 'store' path. To access a stored file, use a ? for a query string, and add the filename to the request.",
+  "example": "To get file 'myFile', use http://server:3040/store/?myFile in the browser / curl / etc.",
+  "info": "Info can be stored on the server if the method is put or post. Use a query string, as above, to set the filename. It will default to a timestamp if left blank."
+}

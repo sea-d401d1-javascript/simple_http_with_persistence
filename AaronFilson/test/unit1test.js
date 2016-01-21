@@ -3,6 +3,7 @@ const expect = require('chai').expect;
 var chai = require('chai')
   , chaiHttp = require('chai-http');
 chai.use(chaiHttp);
+const request = chai.request;
 const index = require(__dirname + '/../index');
 
 describe('http server pointing at index', function(){
@@ -18,13 +19,13 @@ describe('http server pointing at index', function(){
 
   it('should have a reply on index or /', (done) => {
     var app = 'http://localhost:3040';
-    chai.request(app)
+    request(app)
     .get('/')
     .end(function (err, res) {
       expect(err).to.be.null;
       expect(res).to.have.status(200);
     });
-    chai.request(app)
+    request(app)
     .get('/index')
     .end(function (err, res) {
        expect(err).to.be.null;
@@ -36,6 +37,7 @@ describe('http server pointing at index', function(){
 
 describe('the store page', function(){
 
+  var app = 'http://localhost:3040';
   before(function(){
     index.nowstart();
   });
@@ -45,11 +47,11 @@ describe('the store page', function(){
   });
 
   it('should have json in the reply to a get on store', (done) => {
-    var app = 'http://localhost:3040';
-    chai.request(app)
+
+    request(app)
     .get('/store')
     .end(function (err, res) {
-       //expect(err).to.eql(null);
+       expect(err).to.eql(null);
        expect(res).to.have.status(200);
        expect(res.body).to.not.eql(null);
        done();
@@ -57,12 +59,12 @@ describe('the store page', function(){
   });
 
   it('should store on a put to the store', (done) => {
-    var app = 'http://localhost:3040';
-    chai.request(app)
-    .put('/store')
+
+    request(app)
+    .put('/store/?test1.json')
     .send({msg:"hello"})
     .end(function (err, res) {
-       //expect(err).to.be.null;
+       expect(err).to.be.null;
        expect(res).to.have.status(200);
        expect(res.body).to.not.eql(null);
        done();
@@ -70,12 +72,12 @@ describe('the store page', function(){
   });
 
   it('should store on a post to the store', (done) => {
-    var app = 'http://localhost:3040';
-    chai.request(app)
-    .post('/store')
-    .send({msg:"hello"})
+
+    request(app)
+    .post('/store/?test2.json')
+    .send({msg:"hello2"})
     .end(function (err, res) {
-       //expect(err).to.be.null;
+       expect(err).to.be.null;
        expect(res).to.have.status(200);
        expect(res.body).to.not.eql(null);
        done();

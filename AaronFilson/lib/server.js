@@ -4,12 +4,13 @@ var url = require('url');
 var startserver = exports.startserver = function(route, handle){
   function onRequest(request, response) {
     var pathname = url.parse(request.url).pathname;
-    var greetRegex = /\/greet/ ;
+    console.log('server has a request for pathname : ' + pathname);
 
-    if(greetRegex.test(pathname)){
-      pathname = '/greet'
-    }
+    var storeReg = /store/ ;
 
+    if(storeReg.test(pathname)) pathname = '/store';
+
+    console.log('pathname ended up as : ' + pathname);
     route(handle, pathname, request, response);
   }
 

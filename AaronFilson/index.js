@@ -6,7 +6,7 @@ var handle = {};
 handle['/'] = requestHandlers.start;
 handle['/index'] = requestHandlers.start;
 handle['/store'] = requestHandlers.store;
-
+handle['/store/'] = requestHandlers.store;
 
 var nowstart = exports.nowstart = function(){
   server.startserver(router.route, handle);

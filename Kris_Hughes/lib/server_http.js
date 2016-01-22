@@ -11,11 +11,11 @@ var server = http.createServer((req,res) => {
         res.write(files.toString());
         return res.end();
       });
-  
-  } else if (req.method === 'POST' && req.url === '/notes') { 
+
+  } else if (req.method === 'POST' && req.url === '/notes') {
     req.on('data', (data) => {
-      var specificFile = 'notes' + count + '.json'; 
-      var file = __dirname + '/../data/' + specificFile; 
+      var specificFile = 'notes' + count + '.json';
+      var file = __dirname + '/../data/' + specificFile;
       var notes = (data.toString());
       fs.writeFile(file, notes, function(err) {
         if(err) throw err;
@@ -38,3 +38,5 @@ var server = http.createServer((req,res) => {
 server.listen(3000, () => { console.log('server started')});
 
 module.exports = server;
+
+//needed a note for resubmit

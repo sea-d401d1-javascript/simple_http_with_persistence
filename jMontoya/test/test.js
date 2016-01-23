@@ -8,8 +8,6 @@ require(__dirname + '/../server');
 var server = 'localhost:3000';
 
 describe('GET request to /data', function() {
-
-
   it('should respond to POST request by greeting the name in the request body', function(done) {
     chai.request(server)
       .post('/data/post')

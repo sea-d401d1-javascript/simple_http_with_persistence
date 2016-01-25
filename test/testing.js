@@ -15,13 +15,13 @@ describe('simple http server with persistence', () => {
 
   it ('should have a howdy route', (done) => {
     request('localhost:3000')
-      .get('/howdy')
-      .end(function(err, res) => {
-        expect(err).to.eql(null);
-        expect(res).to.have.status(200);
-        expect(res.body.msg).to.eql('howdy');
-        done();
-      });
+    .get('/howdy')
+    .end((err, res) => {
+      expect(err).to.eql(null);
+      expect(res).to.have.status(200);
+      expect(res.body.msg).to.eql('howdy');
+      done();
+    });
   });
 
 
@@ -30,21 +30,22 @@ describe('simple http server with persistence', () => {
       .post('/note')
       .send({ msg: 'Noted!'})
       .end((err, res) => {
+        var obj = JSON.parse(res.text);
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        expect(JSON.parse(res.body.msg).to.eql('Noted!');
+        expect(obj.msg).to.eql('Noted!');
         done();
       });
   });
 
-    it('should show 404 if page not found', (done) => {
-      request('localhost:3000')
-      .get('/pagenotfound')
-      .end(function(err, res){
-        expect(err).to.eql(null);
-        expect(res).to.have.status(404);
-        expect(res.body.msg).to.eql('page not found');
-        done();
-        });
-      });
+  it('should show 404 if page not found', (done) => {
+    request('localhost:3000')
+    .get('/pagenotfound')
+    .end((err, res) => {
+      expect(err).to.eql(null);
+      expect(res).to.have.status(404);
+      expect(res.body.msg).to.eql('page not found');
+      done();
     });
+  });
+});

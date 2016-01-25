@@ -1,1 +1,1 @@
-module.exports = exports = require(__dirname + '/data/router');
+module.exports = exports = require(__dirname + '/lib/router');

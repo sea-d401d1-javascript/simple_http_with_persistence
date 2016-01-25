@@ -1,5 +1,6 @@
 #Basic HTTP Server With Simple Persistence
 Erika's HTTP Server with Simple Persistance
+Note: after install, make a directory called 'data'
 
 ##To Submit this Assignment
   * fork this repository

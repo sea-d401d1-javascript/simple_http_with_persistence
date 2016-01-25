@@ -1,10 +1,10 @@
-const Router = require(__dirname + '/../index');
+const Router = require(__dirname + '/index');
 const http = require('http');
 const fs = require('fs');
 
 var router = new Router();
 var fileCount;
-var path = __dirname + '/../data';
+var path = __dirname + '/data';
 
 fs.readdir(path, function (err, files) {  // determine fileCount
   if (err) throw err;

@@ -1,6 +1,6 @@
 const chai = require('chai');
 const fs = require('fs');
-const test_server = require(__dirname + '/../test/test_server');  // eslint-disable-line
+const test_server = require(__dirname + '/../server');  // eslint-disable-line
 const chaiHTTP = require('chai-http');
 chai.use(chaiHTTP);
 const expect = chai.expect;

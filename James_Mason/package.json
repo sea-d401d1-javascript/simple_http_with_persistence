@@ -1,0 +1,27 @@
+{
+  "name": "simple_http_with_persistence",
+  "version": "0.0.0",
+  "description": "A simple HTTP server which can recieve GET and POST requests.  If the server recieves a GET request it sends a message to the client containing the most recent file saved via a POST request's data.  If the server recieves a POST request it saves a new file with data passed by the request.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JHM90/simple_http_with_persistence.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JHM90/simple_http_with_persistence/issues"
+  },
+  "homepage": "https://github.com/JHM90/simple_http_with_persistence#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "mocha": "^2.3.4"
+  }
+}

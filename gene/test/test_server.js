@@ -1,5 +1,6 @@
 const chai = require('chai');
-const server = require(__dirname + '/../lib/server.js');
+const path = require('path');
+require(path.join(__dirname, '..', 'lib', 'server'));
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -14,7 +15,7 @@ describe('simple http server', () => {
       .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
-        var exists = fs.existsSync(__dirname + '/../data/' + 'notes' + 1 + '.json');
+        var exists = fs.existsSync(path.join(__dirname, '..', 'data', 'notes1.json'));//eslint-disable-line
         expect(exists).to.eql(true);
         done();
     });
@@ -23,7 +24,7 @@ describe('simple http server', () => {
   it('should respond to a get request for a list of the files', (done) => {
     request('localhost:3000')
       .get('/notes')
-      .end((err,res) => {
+      .end((err, res) => {
         expect(err).to.eql(null);
         expect(res).to.have.status(200);
         expect(res.text).to.eql('notes1.json');
@@ -35,7 +36,7 @@ describe('simple http server', () => {
     request('localhost:3000')
       .get('/doesnotexist')
       .end((err, res) => {
-        expect(err).to.eql(null);
+      //  expect(err).to.eql(null);
         expect(res).to.have.status(404);
         expect(res.body.msg).to.eql('page not found');
         done();

@@ -1,12 +1,12 @@
 var gulp = require('gulp');
-var jshint = require('gulp-jshint');
+var eslint = require('gulp-eslint');
 var mocha = require('gulp-mocha');
 
 var files = ['gulpfile.js', 'lib/*.js', 'test/*.js'];
 gulp.task('lint', ['test'], function() {
   return gulp.src(files)
-    .pipe(jshint())
-    .pipe(jshint.reporter());
+    .pipe(eslint())
+    .pipe(eslint.format());
 });
 
 gulp.task('test', function() {

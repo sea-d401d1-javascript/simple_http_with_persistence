@@ -1,0 +1,34 @@
+{
+  "name": "persistent-http-server",
+  "version": "1.0.0",
+  "description": "simple http server that stores post data in a JSON file",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clee46/simple_http_with_persistence.git"
+  },
+  "keywords": [
+    "http",
+    "server",
+    "json",
+    "post",
+    "persistence"
+  ],
+  "author": "Chris Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/clee46/simple_http_with_persistence/issues"
+  },
+  "homepage": "https://github.com/clee46/simple_http_with_persistence#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "httpserverwithpersistance",
+  "version": "1.0.0",
+  "description": "A simple http server with persistance",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0"
+    },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacethelefty/simple_http_with_persistence.git"
+  },
+  "keywords": [
+    "http",
+    "chai-http"
+  ],
+  "author": "Jason Montoya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacethelefty/simple_http_with_persistence/issues"
+  },
+  "homepage": "https://github.com/jacethelefty/simple_http_with_persistence#readme"
+}

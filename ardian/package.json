@@ -1,0 +1,23 @@
+{
+  "name": "ardian",
+  "version": "1.0.0",
+  "description": "HTTP Server With Simple Persistence",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test/**/*test.js"
+  },
+  "author": "Ardian Ajvazi",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-http": "^1.0.0",
+    "eslint": "^1.10.3",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.4"
+  }
+}

@@ -1,0 +1,3 @@
+dStore/**
+!dStore/basicFile.json
+node_modules
